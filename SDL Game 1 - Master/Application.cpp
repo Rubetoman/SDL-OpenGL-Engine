@@ -61,7 +61,7 @@ update_status Application::PreUpdate()
 	for (list<Module*>::iterator it = modules.begin(); it != modules.end() && ret == UPDATE_CONTINUE; ++it)
 		ret = (*it)->PreUpdate();
 
-	if (!ret == UPDATE_CONTINUE) // Error during PreUpdate
+	if (ret != UPDATE_CONTINUE) // Error during PreUpdate
 	{
 		return ret;
 	}
@@ -77,7 +77,7 @@ update_status Application::Update()
 	for(list<Module*>::iterator it = modules.begin(); it != modules.end() && ret == UPDATE_CONTINUE; ++it)
 		ret = (*it)->Update();
 
-	if (!ret == UPDATE_CONTINUE) // Error during PreUpdate
+	if (ret != UPDATE_CONTINUE) // Error during PreUpdate
 	{
 		return ret;
 	}

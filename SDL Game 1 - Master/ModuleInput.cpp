@@ -29,13 +29,29 @@ bool ModuleInput::Init()
 // Called every draw update
 update_status ModuleInput::Update()
 {
+	static SDL_Event event;
 	SDL_PumpEvents();
 
 	keyboard = SDL_GetKeyboardState(NULL);
 
 	// TODO 1: Make the application properly close when ESC is pressed (do not use exit())
 	if (keyboard[SDL_SCANCODE_ESCAPE]) {
+		if (!CleanUp())
+		{
+			return UPDATE_ERROR;
+		}
 		return UPDATE_STOP;
+	}
+
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_WINDOWEVENT:
+			glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			break;
+		}
 	}
 
 	// Homework: Make the application close up when pressing “X” button of the window

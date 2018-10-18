@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "glew/include/GL/glew.h"
 
 typedef unsigned __int8 Uint8;
 
